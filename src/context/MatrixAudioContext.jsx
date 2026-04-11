@@ -27,7 +27,7 @@ export function MatrixAudioProvider({ children }) {
 
   return (
     <MatrixAudioCtx.Provider
-      value={{ soundEnabled, toggleSound, enableSound: () => setSoundEnabled(true), playKeystroke: audio.playKeystroke }}
+      value={{ soundEnabled, toggleSound, enableSound: () => setSoundEnabled(true), disableSound: () => setSoundEnabled(false), playKeystroke: audio.playKeystroke }}
     >
       {children}
     </MatrixAudioCtx.Provider>

@@ -13,6 +13,7 @@ const PHASE = {
   FLASH: 'flash',
   EXPLOSION: 'explosion',
   ENTERED: 'entered',
+  APP: 'app',
 }
 
 function AppContent() {
@@ -37,7 +38,11 @@ function AppContent() {
 
   const handleExplosionDone = useCallback(() => {
     setPhase(PHASE.ENTERED)
-  }, [])
+    setTimeout(() => {
+      if (audio) audio.disableSound()
+      setPhase(PHASE.APP)
+    }, 2000)
+  }, [audio])
 
   const isGlitching = phase === PHASE.GLITCH
 
@@ -82,7 +87,15 @@ function AppContent() {
         </div>
       )}
 
-      <SoundToggle />
+      {phase === PHASE.APP && (
+        <div className="fixed inset-0 z-20 bg-background text-foreground animate-in fade-in duration-700">
+          <div className="flex items-center justify-center h-full">
+            <p className="text-muted-foreground text-lg">App placeholder — buraya uygulama gelecek</p>
+          </div>
+        </div>
+      )}
+
+      {phase !== PHASE.APP && <SoundToggle />}
     </>
   )
 }

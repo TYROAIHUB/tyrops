@@ -10,7 +10,9 @@
       "Bash(rm -rf /c/Users/Cenk/Desktop/matrixapp/matrixapp)",
       "Bash(npm install:*)",
       "mcp__Claude_Preview__preview_start",
-      "Bash(npx shadcn@latest init --preset b1GKvBwH2 --template vite)"
+      "Bash(npx shadcn@latest init --preset b1GKvBwH2 --template vite)",
+      "Bash(npx shadcn@latest mcp init --client claude)",
+      "Bash(npx shadcn@latest init --preset b1Gdfqv5V --template vite --force)"
     ]
   }
 }
