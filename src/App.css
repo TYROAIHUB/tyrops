@@ -1,0 +1,71 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: #000000;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+/* Glitch screen shake */
+@keyframes glitch-shake {
+  0% { transform: translate(0, 0); }
+  10% { transform: translate(-8px, 4px); }
+  20% { transform: translate(6px, -6px); }
+  30% { transform: translate(-4px, 8px); }
+  40% { transform: translate(8px, -2px); }
+  50% { transform: translate(-6px, -4px); }
+  60% { transform: translate(4px, 6px); }
+  70% { transform: translate(-8px, -8px); }
+  80% { transform: translate(6px, 4px); }
+  90% { transform: translate(-4px, -6px); }
+  100% { transform: translate(0, 0); }
+}
+
+@keyframes glitch-color {
+  0% { filter: none; }
+  15% { filter: hue-rotate(90deg) saturate(3) brightness(1.5); }
+  30% { filter: hue-rotate(-90deg) saturate(2) brightness(0.8); }
+  45% { filter: invert(1) hue-rotate(180deg); }
+  60% { filter: hue-rotate(45deg) saturate(5) brightness(2); }
+  75% { filter: hue-rotate(-45deg) brightness(0.5); }
+  90% { filter: saturate(4) brightness(1.8); }
+  100% { filter: brightness(3); }
+}
+
+@keyframes glitch-slice {
+  0% { clip-path: inset(0 0 0 0); }
+  10% { clip-path: inset(20% 0 60% 0); }
+  20% { clip-path: inset(50% 0 10% 0); }
+  30% { clip-path: inset(10% 0 70% 0); }
+  40% { clip-path: inset(80% 0 5% 0); }
+  50% { clip-path: inset(30% 0 40% 0); }
+  60% { clip-path: inset(5% 0 80% 0); }
+  70% { clip-path: inset(60% 0 20% 0); }
+  80% { clip-path: inset(40% 0 30% 0); }
+  90% { clip-path: inset(15% 0 65% 0); }
+  100% { clip-path: inset(0 0 0 0); }
+}
+
+.glitch-active {
+  animation:
+    glitch-shake 0.15s linear infinite,
+    glitch-color 0.3s steps(1) infinite;
+}
+
+@keyframes flash-white {
+  0% { opacity: 0; }
+  50% { opacity: 1; }
+  100% { opacity: 0; }
+}

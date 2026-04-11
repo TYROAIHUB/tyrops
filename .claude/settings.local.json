@@ -1,0 +1,16 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm create:*)",
+      "Bash(npx --yes create-vite@latest . --template react)",
+      "Bash(npx --yes create-vite@latest matrixapp --template react)",
+      "Bash(cp -r /c/Users/Cenk/Desktop/matrixapp/matrixapp/* /c/Users/Cenk/Desktop/matrixapp/)",
+      "Bash(cp /c/Users/Cenk/Desktop/matrixapp/matrixapp/.gitignore /c/Users/Cenk/Desktop/matrixapp/)",
+      "Bash(cp /c/Users/Cenk/Desktop/matrixapp/matrixapp/.eslintrc.cjs /c/Users/Cenk/Desktop/matrixapp/)",
+      "Bash(rm -rf /c/Users/Cenk/Desktop/matrixapp/matrixapp)",
+      "Bash(npm install:*)",
+      "mcp__Claude_Preview__preview_start",
+      "Bash(npx shadcn@latest init --preset b1GKvBwH2 --template vite)"
+    ]
+  }
+}
