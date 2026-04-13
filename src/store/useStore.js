@@ -24,6 +24,7 @@ const useStore = create(
               stack: [],
               team: [],
               repo: '',
+              liveUrl: '',
               database: 'None',
               startDate: new Date().toISOString().split('T')[0],
               endDate: null,
@@ -48,6 +49,25 @@ const useStore = create(
         set((state) => ({
           projects: state.projects.filter((p) => p.id !== id),
         })),
+
+      // Dedupe by name — keep the newest (by createdAt)
+      dedupeProjects: () =>
+        set((state) => {
+          const byName = new Map()
+          for (const p of state.projects) {
+            const key = (p.name || "").trim().toLowerCase()
+            if (!key) continue
+            const existing = byName.get(key)
+            if (!existing) {
+              byName.set(key, p)
+              continue
+            }
+            const tExisting = new Date(existing.createdAt || 0).getTime()
+            const tCurrent = new Date(p.createdAt || 0).getTime()
+            if (tCurrent >= tExisting) byName.set(key, p)
+          }
+          return { projects: Array.from(byName.values()) }
+        }),
 
       // ── Agent actions ─────────────────────────────────────
       addAgent: (agent) =>
@@ -126,6 +146,15 @@ const useStore = create(
       // ── Language ─────────────────────────────────────────
       language: "TR",
       setLanguage: (lang) => set({ language: lang }),
+
+      // ── Settings (finansal parametreler vb.) ─────────────
+      settings: {
+        hourlyRate: 0,
+      },
+      updateSettings: (data) =>
+        set((state) => ({
+          settings: { ...state.settings, ...data },
+        })),
 
       // ── Account profile ───────────────────────────────────
       userProfile: {

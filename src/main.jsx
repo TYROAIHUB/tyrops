@@ -22,6 +22,7 @@ const AccountSettings = lazy(() => import('./pages/settings/account/page.jsx'))
 const AppearanceSettings = lazy(() => import('./pages/settings/appearance/page.jsx'))
 const NotificationSettings = lazy(() => import('./pages/settings/notifications/page.jsx'))
 const ConnectionSettings = lazy(() => import('./pages/settings/connections/page.jsx'))
+const PricingSettings = lazy(() => import('./pages/settings/pricing/page.jsx'))
 
 const LoadingFallback = (
   <div className="flex h-screen items-center justify-center text-muted-foreground">
@@ -55,6 +56,7 @@ createRoot(document.getElementById('root')).render(
                 <Route path="/app/settings/appearance" element={<AppearanceSettings />} />
                 <Route path="/app/settings/notifications" element={<NotificationSettings />} />
                 <Route path="/app/settings/connections" element={<ConnectionSettings />} />
+                <Route path="/app/settings/pricing" element={<PricingSettings />} />
 
                 {/* Exit / 404 */}
                 <Route path="/exit" element={<NotFound />} />

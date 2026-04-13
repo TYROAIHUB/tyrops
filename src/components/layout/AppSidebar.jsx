@@ -76,6 +76,7 @@ export function AppSidebar({ onOpenThemeCustomizer, ...props }) {
             { title: t('nav.settings.appearance'),    url: "/app/settings/appearance" },
             { title: t('nav.settings.notifications'), url: "/app/settings/notifications" },
             { title: t('nav.settings.connections'),   url: "/app/settings/connections" },
+            { title: t('nav.settings.pricing'),       url: "/app/settings/pricing" },
           ],
         },
         { title: t('nav.faqs'), url: "/app/faqs", icon: FaqsIcon },

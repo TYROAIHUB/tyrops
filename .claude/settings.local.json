@@ -75,7 +75,12 @@
       "Bash(findstr /i \"Money01 Wallet01 CreditCard Activity01 Pulse01 Checkmark TaskDone ChartIncrease Profit TrendUp\")",
       "Bash(cmd /c \"dir C:\\\\Users\\\\Cenk\\\\Desktop\\\\matrixapp\\\\node_modules\\\\@hugeicons\\\\core-free-icons /b\")",
       "Bash(powershell -Command \"Get-ChildItem 'C:\\\\Users\\\\Cenk\\\\Desktop\\\\matrixapp\\\\node_modules\\\\@hugeicons\\\\core-free-icons' -Name | Select-String -Pattern 'Money|Wallet|CreditCard|Activity|Checkmark|TaskDone|ChartIncrease|Profit|TrendUp|Coins|Pulse'\")",
-      "Bash(find \"/c/Users/Cenk/Desktop/matrixapp\" -type f \\\\\\( -name \"*.css\" -o -name \"*.js\" -o -name \"*.jsx\" \\\\\\) -exec grep -l \"color-violet-600\\\\|color-blue-600\" {} \\\\;)"
+      "Bash(find \"/c/Users/Cenk/Desktop/matrixapp\" -type f \\\\\\( -name \"*.css\" -o -name \"*.js\" -o -name \"*.jsx\" \\\\\\) -exec grep -l \"color-violet-600\\\\|color-blue-600\" {} \\\\;)",
+      "Bash(gh run:*)",
+      "Bash(gh repo:*)",
+      "Bash(npx shadcn@latest add @shadcn/field --overwrite)",
+      "Bash(node -e ':*)",
+      "Bash(node -e \"require\\('esbuild'\\).build\\({entryPoints:['src/pages/projects/page.jsx','src/store/useStore.js','src/pages/settings/pricing/page.jsx','src/pages/projects/components/project-form-sheet.jsx','src/pages/projects/components/project-detail-sheet.jsx','src/pages/projects/components/related-projects-select.jsx'],bundle:false,format:'esm',write:false,logLevel:'error'}\\).then\\(\\(\\)=>console.log\\('OK'\\)\\).catch\\(\\(\\)=>process.exit\\(1\\)\\)\")"
     ]
   }
 }

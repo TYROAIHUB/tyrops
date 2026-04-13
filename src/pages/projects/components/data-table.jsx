@@ -12,6 +12,7 @@ import {
   ChevronDown,
   EllipsisVertical,
   Eye,
+  KeyRound,
   Pencil,
   Trash2,
   Search,
@@ -144,7 +145,7 @@ const getAvatarColor = (name) => {
   return avatarColors[Math.abs(hash) % avatarColors.length]
 }
 
-export function DataTable({ projects, onViewProject, onEditProject, onDeleteProject, view, onViewChange, onNewProject }) {
+export function DataTable({ projects, onViewProject, onEditProject, onDeleteProject, onOpenVariables, view, onViewChange, onNewProject }) {
   const t = useT()
 
   const statusOptions = useMemo(() => [
@@ -315,12 +316,22 @@ export function DataTable({ projects, onViewProject, onEditProject, onDeleteProj
                   <span className="sr-only">More actions</span>
                 </Button>
               </DropdownMenuTrigger>
-              <DropdownMenuContent align="end">
+              <DropdownMenuContent align="end" className="w-48">
                 <DropdownMenuItem className="cursor-pointer" onClick={() => onViewProject(project)}>
+                  <Eye className="mr-2 size-4" />
                   {t('table.viewDetails')}
                 </DropdownMenuItem>
                 <DropdownMenuItem className="cursor-pointer" onClick={() => onEditProject(project)}>
+                  <Pencil className="mr-2 size-4" />
                   {t('table.editProject')}
+                </DropdownMenuItem>
+                <DropdownMenuSeparator />
+                <DropdownMenuItem
+                  className="cursor-pointer"
+                  onClick={() => onOpenVariables && onOpenVariables(project)}
+                >
+                  <KeyRound className="mr-2 size-4" />
+                  {t('vars.menuItem')}
                 </DropdownMenuItem>
                 <DropdownMenuSeparator />
                 <DropdownMenuItem
@@ -339,7 +350,7 @@ export function DataTable({ projects, onViewProject, onEditProject, onDeleteProj
       enableSorting: false,
       enableHiding: false,
     },
-  ], [onViewProject, onEditProject, onDeleteProject, t])
+  ], [onViewProject, onEditProject, onDeleteProject, onOpenVariables, t])
 
   const filteredProjects = useMemo(() => projects.filter((p) => {
     const af = advancedFilters

@@ -1,6 +1,6 @@
 import { useState } from "react"
 import { useT } from "@/i18n"
-import { Check, ChevronsUpDown, X, FolderKanban } from "lucide-react"
+import { Check, ChevronsUpDown, X } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
@@ -17,21 +17,7 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover"
-
-const avatarColors = [
-  "bg-blue-500", "bg-purple-500", "bg-green-500", "bg-orange-500",
-  "bg-pink-500", "bg-cyan-500", "bg-yellow-500", "bg-red-500",
-]
-
-function getColor(name) {
-  let hash = 0
-  for (let i = 0; i < name.length; i++) hash = name.charCodeAt(i) + ((hash << 5) - hash)
-  return avatarColors[Math.abs(hash) % avatarColors.length]
-}
-
-function getInitials(name) {
-  return name.split(" ").slice(0, 2).map((w) => w[0]).join("").toUpperCase()
-}
+import { TypeIcon } from "./type-icon"
 
 export function RelatedProjectsSelect({ value = [], onChange, projects = [], currentProjectId }) {
   const t = useT()
@@ -49,10 +35,7 @@ export function RelatedProjectsSelect({ value = [], onChange, projects = [], cur
     onChange(value.filter((x) => x !== id))
   }
 
-  const getProjectName = (id) => {
-    const p = projects.find((pr) => pr.id === id)
-    return p?.name || id
-  }
+  const getProject = (id) => projects.find((pr) => pr.id === id)
 
   return (
     <Popover open={open} onOpenChange={setOpen}>
@@ -68,10 +51,11 @@ export function RelatedProjectsSelect({ value = [], onChange, projects = [], cur
               <span className="text-muted-foreground text-sm">{t('select.relatedPlaceholder')}</span>
             ) : (
               value.map((id) => {
-                const name = getProjectName(id)
+                const p = getProject(id)
+                const name = p?.name || id
                 return (
                   <Badge key={id} variant="secondary" className="gap-1 text-xs pr-1">
-                    <FolderKanban className="size-3" />
+                    {p?.type ? <TypeIcon type={p.type} size={12} /> : null}
                     {name}
                     <span
                       role="button"
@@ -103,7 +87,6 @@ export function RelatedProjectsSelect({ value = [], onChange, projects = [], cur
             <CommandGroup>
               {available.map((project) => {
                 const selected = value.includes(project.id)
-                const color = getColor(project.name)
                 return (
                   <CommandItem
                     key={project.id}
@@ -112,13 +95,13 @@ export function RelatedProjectsSelect({ value = [], onChange, projects = [], cur
                     className="cursor-pointer"
                   >
                     <div className="flex items-center gap-2 flex-1">
-                      <div className={`h-6 w-6 rounded-md flex items-center justify-center text-white text-[9px] font-bold shrink-0 ${color}`}>
-                        {getInitials(project.name)}
+                      <div className="h-6 w-6 rounded-md bg-muted flex items-center justify-center shrink-0">
+                        <TypeIcon type={project.type} size={14} />
                       </div>
                       <div className="flex flex-col min-w-0">
                         <span className="text-sm leading-tight truncate">{project.name}</span>
                         {project.type && (
-                          <span className="text-xs text-muted-foreground">{project.type}</span>
+                          <span className="text-xs text-muted-foreground">{t(`type.${project.type}`) || project.type}</span>
                         )}
                       </div>
                     </div>
