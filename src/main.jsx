@@ -33,7 +33,7 @@ createRoot(document.getElementById('root')).render(
   <StrictMode>
     <ThemeProvider defaultTheme="light" storageKey="tyrox-theme">
       <TooltipProvider>
-        <BrowserRouter>
+        <BrowserRouter basename={import.meta.env.BASE_URL}>
           <Suspense fallback={LoadingFallback}>
             <SidebarConfigProvider>
               <Routes>
