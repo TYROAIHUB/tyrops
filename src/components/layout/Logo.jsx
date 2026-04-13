@@ -9,7 +9,7 @@ export function Logo({ className, showText = true, ...props }) {
       </div>
       {showText && (
         <div className="grid flex-1 text-left text-sm leading-tight">
-          <span className="truncate font-medium">TYROX</span>
+          <span className="truncate font-medium">TYROPS</span>
           <span className="truncate text-xs text-muted-foreground">
             AI Ops Tracker
           </span>
