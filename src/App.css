@@ -1,3 +1,9 @@
+/* Fade-to-black transition before navigating to dashboard */
+@keyframes fade-to-black {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
 /* Matrix intro wrapper — scoped to intro only */
 .matrix-intro {
   width: 100%;

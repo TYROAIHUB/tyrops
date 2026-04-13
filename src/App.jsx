@@ -14,6 +14,7 @@ const PHASE = {
   FLASH: 'flash',
   EXPLOSION: 'explosion',
   ENTERED: 'entered',
+  FADEOUT: 'fadeout',
   APP: 'app',
 }
 
@@ -40,11 +41,16 @@ function AppContent() {
 
   const handleExplosionDone = useCallback(() => {
     setPhase(PHASE.ENTERED)
+    // After logo reveal, start fade-out
     setTimeout(() => {
       if (audio) audio.disableSound()
-      navigate('/app')
+      setPhase(PHASE.FADEOUT)
     }, 2000)
-  }, [audio, navigate])
+  }, [audio])
+
+  const handleFadeOutDone = useCallback(() => {
+    navigate('/app')
+  }, [navigate])
 
   const isGlitching = phase === PHASE.GLITCH
 
@@ -73,7 +79,7 @@ function AppContent() {
         <ParticleExplosion onComplete={handleExplosionDone} />
       )}
 
-      {phase === PHASE.ENTERED && (
+      {(phase === PHASE.ENTERED || phase === PHASE.FADEOUT) && (
         <div
           style={{
             position: 'fixed',
@@ -87,6 +93,20 @@ function AppContent() {
         >
           <LogoReveal />
         </div>
+      )}
+
+      {/* Smooth fade-to-black before navigating to dashboard */}
+      {phase === PHASE.FADEOUT && (
+        <div
+          style={{
+            position: 'fixed',
+            inset: 0,
+            zIndex: 50,
+            background: '#000',
+            animation: 'fade-to-black 800ms ease-in forwards',
+          }}
+          onAnimationEnd={handleFadeOutDone}
+        />
       )}
 
       <SoundToggle />

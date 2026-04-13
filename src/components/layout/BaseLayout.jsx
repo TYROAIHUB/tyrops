@@ -11,7 +11,17 @@ import {
 
 export function BaseLayout({ children, title, description }) {
   const [themeCustomizerOpen, setThemeCustomizerOpen] = React.useState(false)
+  const [entering, setEntering] = React.useState(true)
+  const [showOverlay, setShowOverlay] = React.useState(true)
   const { config } = useSidebarConfig()
+
+  React.useEffect(() => {
+    // Trigger fade-out after mount
+    const t = requestAnimationFrame(() => {
+      requestAnimationFrame(() => setEntering(false))
+    })
+    return () => cancelAnimationFrame(t)
+  }, [])
 
   const sidebar = (
     <AppSidebar
@@ -65,6 +75,22 @@ export function BaseLayout({ children, title, description }) {
         open={themeCustomizerOpen}
         onOpenChange={setThemeCustomizerOpen}
       />
+
+      {/* Entrance overlay: fades from black */}
+      {showOverlay && (
+        <div
+          style={{
+            position: 'fixed',
+            inset: 0,
+            zIndex: 9999,
+            background: '#000',
+            opacity: entering ? 1 : 0,
+            transition: 'opacity 800ms ease-out',
+            pointerEvents: 'none',
+          }}
+          onTransitionEnd={() => setShowOverlay(false)}
+        />
+      )}
     </SidebarProvider>
   )
 }
