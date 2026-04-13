@@ -1,4 +1,5 @@
 import { useState, useCallback } from 'react'
+import { useNavigate } from 'react-router-dom'
 import MatrixRain from './components/MatrixRain'
 import EnterOverlay from './components/EnterOverlay'
 import ParticleExplosion from './components/ParticleExplosion'
@@ -19,6 +20,7 @@ const PHASE = {
 function AppContent() {
   const [phase, setPhase] = useState(PHASE.INTRO)
   const audio = useAudio()
+  const navigate = useNavigate()
 
   const handleEnter = useCallback(() => {
     // Enable sound on enter
@@ -40,14 +42,14 @@ function AppContent() {
     setPhase(PHASE.ENTERED)
     setTimeout(() => {
       if (audio) audio.disableSound()
-      setPhase(PHASE.APP)
+      navigate('/app')
     }, 2000)
-  }, [audio])
+  }, [audio, navigate])
 
   const isGlitching = phase === PHASE.GLITCH
 
   return (
-    <>
+    <div className="matrix-intro">
       <div className={isGlitching ? 'glitch-active' : ''}>
         <MatrixRain />
       </div>
@@ -87,16 +89,8 @@ function AppContent() {
         </div>
       )}
 
-      {phase === PHASE.APP && (
-        <div className="fixed inset-0 z-20 bg-background text-foreground animate-in fade-in duration-700">
-          <div className="flex items-center justify-center h-full">
-            <p className="text-muted-foreground text-lg">App placeholder — buraya uygulama gelecek</p>
-          </div>
-        </div>
-      )}
-
-      {phase !== PHASE.APP && <SoundToggle />}
-    </>
+      <SoundToggle />
+    </div>
   )
 }
 

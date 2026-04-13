@@ -1,0 +1,513 @@
+import useStore from '@/store/useStore'
+
+export const translations = {
+  TR: {
+    // ── Sidebar groups ───────────────────────────────────
+    'group.overview':  'Genel Bakış',
+    'group.tracking':  'Takip',
+    'group.apps':      'Uygulamalar',
+    'group.pages':     'Sayfalar',
+
+    // ── Nav items ────────────────────────────────────────
+    'nav.dashboard':   'Anasayfa',
+    'nav.projects':    'Projeler',
+    'nav.chat':        'Sohbet',
+    'nav.calendar':    'Takvim',
+    'nav.users':       'Kullanıcılar',
+    'nav.settings':    'Ayarlar',
+    'nav.faqs':        'SSS',
+
+    // ── Settings sub-items ───────────────────────────────
+    'nav.settings.user':          'Kullanıcı Ayarları',
+    'nav.settings.account':       'Hesap Ayarları',
+    'nav.settings.appearance':    'Görünüm',
+    'nav.settings.notifications': 'Bildirimler',
+    'nav.settings.connections':   'Bağlantılar',
+
+    // ── Breadcrumb / page labels ─────────────────────────
+    'page.app':           'Anasayfa',
+    'page.projects':      'Projeler',
+    'page.chat':          'Sohbet',
+    'page.calendar':      'Takvim',
+    'page.users':         'Kullanıcılar',
+    'page.settings':      'Ayarlar',
+    'page.user':          'Profil',
+    'page.account':       'Hesap',
+    'page.appearance':    'Görünüm',
+    'page.notifications': 'Bildirimler',
+    'page.connections':   'Bağlantılar',
+    'page.faqs':          'SSS',
+
+    // ── Header search ────────────────────────────────────
+    'search.placeholder': 'Ara...',
+    'search.pages':       'Sayfalar',
+    'search.projects':    'Projeler',
+    'search.users':       'Kullanıcılar',
+    'search.empty':       'Sonuç bulunamadı.',
+
+    // ── UserAvatar / NavUser dropdown ────────────────────
+    'user.account':   'Hesap',
+    'user.theme':     'Tema Özelleştirici',
+    'user.logout':    'Çıkış Yap',
+
+    // ── Common status labels ─────────────────────────────
+    'status.active':     'Aktif',
+    'status.completed':  'Tamamlandı',
+    'status.planned':    'Planlandı',
+    'status.hold':       'Beklemede',
+
+    // ── Common project type labels ───────────────────────
+    'type.web-app':       'Web Uygulaması',
+    'type.mobile-app':    'Mobil Uygulama',
+    'type.api':           'API',
+    'type.automation':    'Otomasyon',
+    'type.agent':         'Ajan',
+    'type.mcp':           'MCP',
+    'type.data-pipeline': 'Veri Akışı',
+    'type.other':         'Diğer',
+
+    // ── Common actions ───────────────────────────────────
+    'action.save':        'Kaydet',
+    'action.cancel':      'İptal',
+    'action.edit':        'Düzenle',
+    'action.delete':      'Sil',
+    'action.view':        'Görüntüle',
+    'action.viewAll':     'Tümünü Gör',
+    'action.viewDetails': 'Detayları Gör',
+    'action.viewRepo':    'Repoyu Gör',
+    'action.newProject':  'Yeni Proje',
+    'action.clear':       'Temizle',
+    'action.clearFilters':'Filtreleri Temizle',
+
+    // ── Dashboard page ───────────────────────────────────
+    'dashboard.title':       'AI Ops Komuta Merkezi',
+    'dashboard.subtitle':    'AI operasyonlarınızın, projelerinizin ve otomasyonlarınızın gerçek zamanlı görünümü',
+    'dashboard.newProject':  'Yeni Proje',
+    'dashboard.deployAgent': 'Ajan Yayınla',
+    'dashboard.createAuto':  'Otomasyon Oluştur',
+
+    // Metrics overview
+    'metrics.totalRevenue':    'Toplam Gelir',
+    'metrics.activeProjects':  'Aktif Projeler',
+    'metrics.totalProjects':   'Toplam Projeler',
+    'metrics.successRate':     'Başarı Oranı',
+    'metrics.fromAllProjects': 'Tüm projelerden',
+    'metrics.valueGenerated':  'Operasyonlarda üretilen değer',
+    'metrics.inProgress':      'Şu anda devam ediyor',
+    'metrics.tracked':         (n) => `${n} proje takip ediliyor`,
+    'metrics.delivering':      'Sonuç üreten projeler',
+    'metrics.growing':         'Büyüyen proje portföyü',
+    'metrics.allOps':          'Tüm takip edilen operasyonlar',
+    'metrics.completedActive': (c, a) => `${c} tamamlandı, ${a} aktif`,
+    'metrics.noCompleted':     'Henüz tamamlanan proje yok',
+
+    // Sales chart
+    'chart.aiPerformance':   'AI Performansı',
+    'chart.revenueVsCost':   'Aylık gelir - operasyonel maliyet karşılaştırması',
+    'chart.last3months':     'Son 3 ay',
+    'chart.last6months':     'Son 6 ay',
+    'chart.last12months':    'Son 12 ay',
+
+    // Revenue breakdown
+    'breakdown.title':       'Proje Dağılımı',
+    'breakdown.description': 'Proje türüne göre gelir dağılımı',
+    'breakdown.selectType':  'Tür seç',
+    'breakdown.projects':    'proje',
+
+    // Top projects
+    'topProjects.title':       'En İyi Projeler',
+    'topProjects.description': 'En yüksek gelir üreten projeler',
+
+    // Recent projects
+    'recent.title':       'Son Projeler',
+    'recent.description': 'En son eklenen projeler',
+    'recent.today':       'Bugün',
+    'recent.yesterday':   'Dün',
+    'recent.daysAgo':     (n) => `${n} gün önce`,
+
+    // Ops insights
+    'insights.title':         'Ops İçgörüleri',
+    'insights.description':   'Operasyon büyümesi, teknoloji stack kullanımı ve ekip performansı',
+    'insights.tabGrowth':     'Büyüme',
+    'insights.tabTech':       'Tech Stack',
+    'insights.tabTeam':       'Ekip',
+    'insights.opsGrowth':     'Operasyon Büyümesi',
+    'insights.keyMetrics':    'Temel Metrikler',
+    'insights.totalProjects': 'Toplam Projeler',
+    'insights.aiAgents':      'AI Ajanlar',
+    'insights.automations':   'Otomasyonlar',
+    'insights.colTech':       'Teknoloji',
+    'insights.colProjects':   'Projeler',
+    'insights.colRevenue':    'Gelir',
+    'insights.colShare':      'Pay',
+    'insights.colMember':     'Ekip Üyesi',
+    'insights.colContrib':    'Katkı',
+    'insights.active':        'aktif',
+    'insights.running':       'çalışıyor',
+
+    // ── Projects page ────────────────────────────────────
+    'projects.title':         'Projeler',
+    'projects.subtitle':      'Tüm projelerinizi takip edin ve yönetin',
+    'projects.empty':         'Proje bulunamadı.',
+    'projects.noResults':     'Proje bulunamadı.',
+
+    // Stat cards
+    'stat.totalValue':   'Toplam Değer',
+    'stat.totalCost':    'Toplam Maliyet',
+    'stat.active':       'Aktif',
+    'stat.completed':    'Tamamlanan',
+    'stat.roi':          'YG (ROI)',
+    'stat.vsLastMonth':  'geçen aya göre',
+    'stat.completedLbl': 'tamamlandı',
+    'stat.roiLbl':       'yatırım getirisi',
+
+    // Data table
+    'table.searchPlaceholder': 'Proje ara...',
+    'table.status':            'Durum',
+    'table.filters':           'Filtreler',
+    'table.advancedFilters':   'Gelişmiş Filtreler',
+    'table.clear':             'Temizle',
+    'table.clearFilters':      'Filtreleri Temizle',
+    'table.type':              'Tür',
+    'table.tech':              'Teknoloji',
+    'table.teamMember':        'Ekip Üyesi',
+    'table.valueGenerated':    'Üretilen Değer ($)',
+    'table.startDateRange':    'Başlangıç Tarihi Aralığı',
+    'table.allTypes':          'Tüm Türler',
+    'table.techPlaceholder':   'örn. React, Python...',
+    'table.teamPlaceholder':   'örn. Cenk, Burak...',
+    'table.min':               'Min',
+    'table.max':               'Max',
+    'table.toggleColumns':     'Sütunları Seç',
+    'table.colProject':        'Proje',
+    'table.colTech':           'Teknoloji',
+    'table.colTeam':           'Ekip',
+    'table.colStatus':         'Durum',
+    'table.colValue':          'Değer',
+    'table.previous':          'Önceki',
+    'table.next':              'Sonraki',
+    'table.show':              'Göster',
+    'table.page':              'Sayfa',
+    'table.selected':          'seçildi',
+    'table.rows':              'satır',
+    'table.viewDetails':       'Detayları Gör',
+    'table.editProject':       'Projeyi Düzenle',
+    'table.delete':            'Sil',
+
+    // Project detail sheet
+    'detail.type':        'Tür',
+    'detail.database':    'Veritabanı',
+    'detail.techStack':   'Tech Stack',
+    'detail.team':        'Ekip Üyeleri',
+    'detail.startDate':   'Başlangıç Tarihi',
+    'detail.endDate':     'Bitiş Tarihi',
+    'detail.repo':        'Depo',
+    'detail.financials':  'Finansallar',
+    'detail.notes':       'Notlar',
+    'detail.costSpent':   'Harcanan Maliyet',
+    'detail.monthly':     'Aylık Yinelenen',
+    'detail.valueGen':    'Üretilen Değer',
+    'detail.none':        'Yok',
+    'detail.edit':        'Düzenle',
+    'detail.delete':      'Sil',
+
+    // Project form sheet
+    'form.editTitle':     'Projeyi Düzenle',
+    'form.newTitle':      'Yeni Proje',
+    'form.editDesc':      'Proje detaylarını güncelleyin.',
+    'form.newDesc':       'Yeni proje oluşturmak için bilgileri doldurun.',
+    'form.name':          'Ad',
+    'form.description':   'Açıklama',
+    'form.status':        'Durum',
+    'form.type':          'Tür',
+    'form.tech':          'Teknoloji',
+    'form.team':          'Ekip',
+    'form.repo':          'Depo URL',
+    'form.startDate':     'Başlangıç Tarihi',
+    'form.endDate':       'Bitiş Tarihi',
+    'form.costSpent':     'Harcanan Maliyet ($)',
+    'form.monthlyCost':   'Aylık Maliyet ($)',
+    'form.valueGen':      'Üretilen Değer ($)',
+    'form.notes':         'Notlar',
+    'form.related':       'İlgili Projeler',
+    'form.namePlaceholder': 'Proje adı',
+    'form.descPlaceholder': 'Projenin kısa açıklaması',
+    'form.repoPlaceholder': 'https://github.com/...',
+    'form.notesPlaceholder':'Ek notlar...',
+    'form.selectStatus':  'Durum seçin',
+    'form.selectType':    'Tür seçin',
+    'form.cancel':        'İptal',
+    'form.update':        'Projeyi Güncelle',
+    'form.create':        'Proje Oluştur',
+
+    // Multi-selects
+    'select.teamPlaceholder':    'Ekip üyesi seçin...',
+    'select.teamSearch':         'Kullanıcı ara...',
+    'select.teamEmpty':          'Kullanıcı bulunamadı.',
+    'select.techPlaceholder':    'Teknoloji, AI platformu, veritabanı seçin...',
+    'select.techSearch':         'Ara...',
+    'select.techEmpty':          'Sonuç bulunamadı.',
+    'select.relatedPlaceholder': 'İlgili projeler seçin...',
+    'select.relatedSearch':      'Proje ara...',
+    'select.relatedEmpty':       'Proje bulunamadı.',
+  },
+
+  EN: {
+    // ── Sidebar groups ───────────────────────────────────
+    'group.overview':  'Overview',
+    'group.tracking':  'Tracking',
+    'group.apps':      'Apps',
+    'group.pages':     'Pages',
+
+    // ── Nav items ────────────────────────────────────────
+    'nav.dashboard':   'Dashboard',
+    'nav.projects':    'Projects',
+    'nav.chat':        'Chat',
+    'nav.calendar':    'Calendar',
+    'nav.users':       'Users',
+    'nav.settings':    'Settings',
+    'nav.faqs':        'FAQs',
+
+    // ── Settings sub-items ───────────────────────────────
+    'nav.settings.user':          'User Settings',
+    'nav.settings.account':       'Account Settings',
+    'nav.settings.appearance':    'Appearance',
+    'nav.settings.notifications': 'Notifications',
+    'nav.settings.connections':   'Connections',
+
+    // ── Breadcrumb / page labels ─────────────────────────
+    'page.app':           'Dashboard',
+    'page.projects':      'Projects',
+    'page.chat':          'Chat',
+    'page.calendar':      'Calendar',
+    'page.users':         'Users',
+    'page.settings':      'Settings',
+    'page.user':          'Profile',
+    'page.account':       'Account',
+    'page.appearance':    'Appearance',
+    'page.notifications': 'Notifications',
+    'page.connections':   'Connections',
+    'page.faqs':          'FAQs',
+
+    // ── Header search ────────────────────────────────────
+    'search.placeholder': 'Search...',
+    'search.pages':       'Pages',
+    'search.projects':    'Projects',
+    'search.users':       'Users',
+    'search.empty':       'No results found.',
+
+    // ── UserAvatar / NavUser dropdown ────────────────────
+    'user.account':   'Account',
+    'user.theme':     'Theme Customizer',
+    'user.logout':    'Log out',
+
+    // ── Common status labels ─────────────────────────────
+    'status.active':     'Active',
+    'status.completed':  'Completed',
+    'status.planned':    'Planned',
+    'status.hold':       'Hold',
+
+    // ── Common project type labels ───────────────────────
+    'type.web-app':       'Web App',
+    'type.mobile-app':    'Mobile App',
+    'type.api':           'API',
+    'type.automation':    'Automation',
+    'type.agent':         'Agent',
+    'type.mcp':           'MCP',
+    'type.data-pipeline': 'Data Pipeline',
+    'type.other':         'Other',
+
+    // ── Common actions ───────────────────────────────────
+    'action.save':        'Save',
+    'action.cancel':      'Cancel',
+    'action.edit':        'Edit',
+    'action.delete':      'Delete',
+    'action.view':        'View',
+    'action.viewAll':     'View All',
+    'action.viewDetails': 'View Details',
+    'action.viewRepo':    'View Repository',
+    'action.newProject':  'New Project',
+    'action.clear':       'Clear',
+    'action.clearFilters':'Clear filters',
+
+    // ── Dashboard page ───────────────────────────────────
+    'dashboard.title':       'AI Ops Command Center',
+    'dashboard.subtitle':    'Real-time overview of your AI operations, projects, and automations',
+    'dashboard.newProject':  'New Project',
+    'dashboard.deployAgent': 'Deploy Agent',
+    'dashboard.createAuto':  'Create Automation',
+
+    // Metrics overview
+    'metrics.totalRevenue':    'Total Revenue',
+    'metrics.activeProjects':  'Active Projects',
+    'metrics.totalProjects':   'Total Projects',
+    'metrics.successRate':     'Success Rate',
+    'metrics.fromAllProjects': 'From all projects combined',
+    'metrics.valueGenerated':  'Value generated across operations',
+    'metrics.inProgress':      'Currently in progress',
+    'metrics.tracked':         (n) => `${n} total projects tracked`,
+    'metrics.delivering':      'Projects delivering results',
+    'metrics.growing':         'Growing project portfolio',
+    'metrics.allOps':          'All tracked operations',
+    'metrics.completedActive': (c, a) => `${c} completed, ${a} active`,
+    'metrics.noCompleted':     'No completed projects yet',
+
+    // Sales chart
+    'chart.aiPerformance':   'AI Performance',
+    'chart.revenueVsCost':   'Monthly revenue vs operational cost',
+    'chart.last3months':     'Last 3 months',
+    'chart.last6months':     'Last 6 months',
+    'chart.last12months':    'Last 12 months',
+
+    // Revenue breakdown
+    'breakdown.title':       'Project Breakdown',
+    'breakdown.description': 'Revenue distribution by project type',
+    'breakdown.selectType':  'Select type',
+    'breakdown.projects':    'projects',
+
+    // Top projects
+    'topProjects.title':       'Top Projects',
+    'topProjects.description': 'Highest revenue generating projects',
+
+    // Recent projects
+    'recent.title':       'Recent Projects',
+    'recent.description': 'Latest added projects',
+    'recent.today':       'Today',
+    'recent.yesterday':   'Yesterday',
+    'recent.daysAgo':     (n) => `${n} days ago`,
+
+    // Ops insights
+    'insights.title':         'Ops Insights',
+    'insights.description':   'Operations growth, tech stack usage, and team performance',
+    'insights.tabGrowth':     'Growth',
+    'insights.tabTech':       'Tech Stack',
+    'insights.tabTeam':       'Team',
+    'insights.opsGrowth':     'Operations Growth',
+    'insights.keyMetrics':    'Key Metrics',
+    'insights.totalProjects': 'Total Projects',
+    'insights.aiAgents':      'AI Agents',
+    'insights.automations':   'Automations',
+    'insights.colTech':       'Technology',
+    'insights.colProjects':   'Projects',
+    'insights.colRevenue':    'Revenue',
+    'insights.colShare':      'Share',
+    'insights.colMember':     'Team Member',
+    'insights.colContrib':    'Contribution',
+    'insights.active':        'active',
+    'insights.running':       'running',
+
+    // ── Projects page ────────────────────────────────────
+    'projects.title':         'Projects',
+    'projects.subtitle':      'Track and manage all your projects',
+    'projects.empty':         'No projects found.',
+    'projects.noResults':     'No projects found.',
+
+    // Stat cards
+    'stat.totalValue':   'Total Value',
+    'stat.totalCost':    'Total Cost',
+    'stat.active':       'Active',
+    'stat.completed':    'Completed',
+    'stat.roi':          'ROI',
+    'stat.vsLastMonth':  'vs last month',
+    'stat.completedLbl': 'completed',
+    'stat.roiLbl':       'return on investment',
+
+    // Data table
+    'table.searchPlaceholder': 'Search projects…',
+    'table.status':            'Status',
+    'table.filters':           'Filters',
+    'table.advancedFilters':   'Advanced Filters',
+    'table.clear':             'Clear',
+    'table.clearFilters':      'Clear filters',
+    'table.type':              'Type',
+    'table.tech':              'Tech',
+    'table.teamMember':        'Team Member',
+    'table.valueGenerated':    'Value Generated ($)',
+    'table.startDateRange':    'Start Date Range',
+    'table.allTypes':          'All Types',
+    'table.techPlaceholder':   'e.g. React, Python…',
+    'table.teamPlaceholder':   'e.g. Cenk, Burak…',
+    'table.min':               'Min',
+    'table.max':               'Max',
+    'table.toggleColumns':     'Toggle columns',
+    'table.colProject':        'Project',
+    'table.colTech':           'Tech',
+    'table.colTeam':           'Team',
+    'table.colStatus':         'Status',
+    'table.colValue':          'Value',
+    'table.previous':          'Previous',
+    'table.next':              'Next',
+    'table.show':              'Show',
+    'table.page':              'Page',
+    'table.selected':          'selected',
+    'table.rows':              'row(s)',
+    'table.viewDetails':       'View Details',
+    'table.editProject':       'Edit Project',
+    'table.delete':            'Delete',
+
+    // Project detail sheet
+    'detail.type':        'Type',
+    'detail.database':    'Database',
+    'detail.techStack':   'Tech Stack',
+    'detail.team':        'Team Members',
+    'detail.startDate':   'Start Date',
+    'detail.endDate':     'End Date',
+    'detail.repo':        'Repository',
+    'detail.financials':  'Financials',
+    'detail.notes':       'Notes',
+    'detail.costSpent':   'Cost Spent',
+    'detail.monthly':     'Monthly Recurring',
+    'detail.valueGen':    'Value Generated',
+    'detail.none':        'None',
+    'detail.edit':        'Edit',
+    'detail.delete':      'Delete',
+
+    // Project form sheet
+    'form.editTitle':     'Edit Project',
+    'form.newTitle':      'New Project',
+    'form.editDesc':      'Update project details below.',
+    'form.newDesc':       'Fill in the details to create a new project.',
+    'form.name':          'Name',
+    'form.description':   'Description',
+    'form.status':        'Status',
+    'form.type':          'Type',
+    'form.tech':          'Tech',
+    'form.team':          'Team',
+    'form.repo':          'Repository URL',
+    'form.startDate':     'Start Date',
+    'form.endDate':       'End Date',
+    'form.costSpent':     'Cost Spent ($)',
+    'form.monthlyCost':   'Monthly Cost ($)',
+    'form.valueGen':      'Value Generated ($)',
+    'form.notes':         'Notes',
+    'form.related':       'Related Projects',
+    'form.namePlaceholder': 'Project name',
+    'form.descPlaceholder': 'Brief description of the project',
+    'form.repoPlaceholder': 'https://github.com/...',
+    'form.notesPlaceholder':'Additional notes…',
+    'form.selectStatus':  'Select status',
+    'form.selectType':    'Select type',
+    'form.cancel':        'Cancel',
+    'form.update':        'Update Project',
+    'form.create':        'Create Project',
+
+    // Multi-selects
+    'select.teamPlaceholder':    'Select team members…',
+    'select.teamSearch':         'Search users…',
+    'select.teamEmpty':          'No users found.',
+    'select.techPlaceholder':    'Select technologies, AI platforms, databases…',
+    'select.techSearch':         'Search…',
+    'select.techEmpty':          'No result found.',
+    'select.relatedPlaceholder': 'Select related projects…',
+    'select.relatedSearch':      'Search projects…',
+    'select.relatedEmpty':       'No projects found.',
+  },
+}
+
+export function useT() {
+  const language = useStore((s) => s.language)
+  return (key, ...args) => {
+    const val = translations[language]?.[key] ?? translations['EN'][key] ?? key
+    return typeof val === 'function' ? val(...args) : val
+  }
+}

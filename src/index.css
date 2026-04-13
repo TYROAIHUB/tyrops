@@ -5,11 +5,6 @@
 
 @custom-variant dark (&:is(.dark *));
 
-body {
-  margin: 0;
-  background: #000000;
-}
-
 @theme inline {
   --font-heading: var(--font-sans);
   --font-sans: 'Geist Variable', sans-serif;
@@ -88,48 +83,56 @@ body {
   --sidebar-ring: oklch(0.708 0 0);
 }
 
-.dark {
-  --background: oklch(0.145 0 0);
-  --foreground: oklch(0.985 0 0);
-  --card: oklch(0.205 0 0);
-  --card-foreground: oklch(0.985 0 0);
-  --popover: oklch(0.205 0 0);
-  --popover-foreground: oklch(0.985 0 0);
-  --primary: oklch(0.922 0 0);
-  --primary-foreground: oklch(0.205 0 0);
-  --secondary: oklch(0.269 0 0);
-  --secondary-foreground: oklch(0.985 0 0);
-  --muted: oklch(0.269 0 0);
-  --muted-foreground: oklch(0.708 0 0);
-  --accent: oklch(0.922 0 0);
-  --accent-foreground: oklch(0.205 0 0);
-  --destructive: oklch(0.704 0.191 22.216);
-  --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.556 0 0);
-  --chart-1: oklch(0.879 0.169 91.605);
-  --chart-2: oklch(0.769 0.188 70.08);
-  --chart-3: oklch(0.666 0.179 58.318);
-  --chart-4: oklch(0.555 0.163 48.998);
-  --chart-5: oklch(0.473 0.137 46.201);
-  --sidebar: oklch(0.205 0 0);
-  --sidebar-foreground: oklch(0.985 0 0);
-  --sidebar-primary: oklch(0.488 0.243 264.376);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.269 0 0);
-  --sidebar-accent-foreground: oklch(0.985 0 0);
-  --sidebar-border: oklch(1 0 0 / 10%);
-  --sidebar-ring: oklch(0.556 0 0);
-}
 
 @layer base {
   * {
     @apply border-border outline-ring/50;
   }
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground font-sans;
   }
   html {
     @apply font-sans;
+    scroll-behavior: smooth;
   }
+}
+
+/* Ensure consistent font rendering across different DPI levels */
+@media (-webkit-min-device-pixel-ratio: 1.5), (min-resolution: 144dpi) {
+  body {
+    -webkit-font-smoothing: subpixel-antialiased;
+  }
+}
+
+/* Fix for sidebar "none" mode height issue */
+.sidebar-none-mode [data-slot="sidebar"] {
+  height: 100vh !important;
+  min-height: 100vh !important;
+}
+
+/* Fix for right-side inset variant support */
+@media (min-width: 768px) {
+  [data-side="right"][data-variant="inset"] ~ [data-slot="sidebar-inset"] {
+    margin-right: 0 !important;
+  }
+  [data-side="right"][data-variant="inset"][data-state="collapsed"] ~ [data-slot="sidebar-inset"] {
+    margin-right: 0.5rem !important;
+  }
+}
+
+/* Sidebar group labels are never interactive — prevent blocking clicks when collapsed */
+[data-sidebar="group-label"] {
+  pointer-events: none;
+}
+
+/* Active sidebar menu item — primary color glass highlight */
+[data-slot="sidebar-menu-button"][data-active="true"] {
+  background-color: color-mix(in oklch, var(--primary) 6%, transparent) !important;
+  color: var(--primary) !important;
+  box-shadow: inset 2px 0 0 var(--primary), 0 1px 3px -1px color-mix(in oklch, var(--primary) 12%, transparent);
+  font-weight: 500;
+}
+
+[data-slot="sidebar-menu-button"][data-active="true"] svg {
+  color: var(--primary) !important;
 }

@@ -3,6 +3,21 @@ import { useNavigate } from 'react-router-dom'
 import { getRandomChar } from '../utils/matrixConfig'
 import { useAudio } from '../context/MatrixAudioContext'
 
+const BTN_BASE_STYLE = {
+  fontFamily: '"Courier New", Courier, monospace',
+  fontSize: 'clamp(0.75rem, 1.6vw, 1.1rem)',
+  fontWeight: 700,
+  letterSpacing: '0.18em',
+  cursor: 'pointer',
+  padding: '0.55em 1.5em',
+  borderRadius: 12,
+  display: 'flex',
+  alignItems: 'center',
+  gap: '0.8em',
+  border: '1px solid rgba(255,255,255,0.18)',
+  transition: 'all 0.3s ease',
+}
+
 const INTRO_LINES = [
   { text: 'Wake up...', delay: 500 },
   { text: 'The Matrix has you...', delay: 700 },
@@ -104,7 +119,7 @@ export default function EnterOverlay({ onEnter }) {
 
     if (currentCharIndex <= line.text.length) {
       intervalRef.current = setTimeout(() => {
-        if (audio) audio.playKeystroke()
+        // if (audio) audio.playKeystroke()
         setDisplayedLines((prev) => {
           const updated = [...prev]
           updated[updated.length - 1] = line.text.slice(0, currentCharIndex)
@@ -134,20 +149,7 @@ export default function EnterOverlay({ onEnter }) {
     setShowButton(true)
   }
 
-  const btnBase = {
-    fontFamily: '"Courier New", Courier, monospace',
-    fontSize: 'clamp(0.75rem, 1.6vw, 1.1rem)',
-    fontWeight: 700,
-    letterSpacing: '0.18em',
-    cursor: 'pointer',
-    padding: '0.55em 1.5em',
-    borderRadius: 12,
-    display: 'flex',
-    alignItems: 'center',
-    gap: '0.8em',
-    border: '1px solid rgba(255,255,255,0.18)',
-    transition: 'all 0.3s ease',
-  }
+  const btnBase = BTN_BASE_STYLE
 
   return (
     <div

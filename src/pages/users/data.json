@@ -1,0 +1,122 @@
+[
+  {
+    "id": 1,
+    "name": "Cenk Tiryaki",
+    "email": "cenk.tiryaki@tiryaki.com.tr",
+    "avatar": "CT",
+    "role": "Admin",
+    "plan": "Enterprise",
+    "billing": "Auto Debit",
+    "status": "Active",
+    "joinedDate": "2024-01-10",
+    "lastLogin": "2026-04-12"
+  },
+  {
+    "id": 2,
+    "name": "Burak Yilmaz",
+    "email": "burak.yilmaz@tiryaki.com.tr",
+    "avatar": "BY",
+    "role": "Editor",
+    "plan": "Enterprise",
+    "billing": "Auto Debit",
+    "status": "Active",
+    "joinedDate": "2024-03-15",
+    "lastLogin": "2026-04-12"
+  },
+  {
+    "id": 3,
+    "name": "Selin Kaya",
+    "email": "selin.kaya@tiryaki.com.tr",
+    "avatar": "SK",
+    "role": "Editor",
+    "plan": "Professional",
+    "billing": "Auto Debit",
+    "status": "Active",
+    "joinedDate": "2024-06-01",
+    "lastLogin": "2026-04-11"
+  },
+  {
+    "id": 4,
+    "name": "Emre Demir",
+    "email": "emre.demir@tiryaki.com.tr",
+    "avatar": "ED",
+    "role": "Maintainer",
+    "plan": "Enterprise",
+    "billing": "Auto Debit",
+    "status": "Active",
+    "joinedDate": "2024-02-20",
+    "lastLogin": "2026-04-12"
+  },
+  {
+    "id": 5,
+    "name": "Derya Aksoy",
+    "email": "derya.aksoy@tiryaki.com.tr",
+    "avatar": "DA",
+    "role": "Editor",
+    "plan": "Professional",
+    "billing": "Auto Debit",
+    "status": "Active",
+    "joinedDate": "2024-05-10",
+    "lastLogin": "2026-04-10"
+  },
+  {
+    "id": 6,
+    "name": "Ayse Ozturk",
+    "email": "ayse.ozturk@tiryaki.com.tr",
+    "avatar": "AO",
+    "role": "Author",
+    "plan": "Professional",
+    "billing": "Auto Debit",
+    "status": "Active",
+    "joinedDate": "2024-04-01",
+    "lastLogin": "2026-04-11"
+  },
+  {
+    "id": 7,
+    "name": "Murat Celik",
+    "email": "murat.celik@tiryaki.com.tr",
+    "avatar": "MC",
+    "role": "Subscriber",
+    "plan": "Basic",
+    "billing": "Auto Debit",
+    "status": "Active",
+    "joinedDate": "2025-01-15",
+    "lastLogin": "2026-04-09"
+  },
+  {
+    "id": 8,
+    "name": "Elif Sahin",
+    "email": "elif.sahin@tiryaki.com.tr",
+    "avatar": "ES",
+    "role": "Author",
+    "plan": "Professional",
+    "billing": "Auto Debit",
+    "status": "Active",
+    "joinedDate": "2025-03-01",
+    "lastLogin": "2026-04-08"
+  },
+  {
+    "id": 9,
+    "name": "Ahmet Korkmaz",
+    "email": "ahmet.korkmaz@tiryaki.com.tr",
+    "avatar": "AK",
+    "role": "Subscriber",
+    "plan": "Basic",
+    "billing": "Auto Debit",
+    "status": "Pending",
+    "joinedDate": "2026-03-01",
+    "lastLogin": "2026-03-15"
+  },
+  {
+    "id": 10,
+    "name": "Zeynep Arslan",
+    "email": "zeynep.arslan@tiryaki.com.tr",
+    "avatar": "ZA",
+    "role": "Maintainer",
+    "plan": "Enterprise",
+    "billing": "Auto Debit",
+    "status": "Active",
+    "joinedDate": "2024-08-15",
+    "lastLogin": "2026-04-12"
+  }
+]
