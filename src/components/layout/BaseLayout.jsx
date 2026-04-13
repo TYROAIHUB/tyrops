@@ -76,16 +76,16 @@ export function BaseLayout({ children, title, description }) {
         onOpenChange={setThemeCustomizerOpen}
       />
 
-      {/* Entrance overlay: fades from black */}
+      {/* Entrance overlay: fades from white (matches dissolve end color) */}
       {showOverlay && (
         <div
           style={{
             position: 'fixed',
             inset: 0,
             zIndex: 9999,
-            background: '#000',
+            background: '#fff',
             opacity: entering ? 1 : 0,
-            transition: 'opacity 800ms ease-out',
+            transition: 'opacity 600ms ease-out',
             pointerEvents: 'none',
           }}
           onTransitionEnd={() => setShowOverlay(false)}

@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import MatrixRain from './components/MatrixRain'
 import EnterOverlay from './components/EnterOverlay'
 import ParticleExplosion from './components/ParticleExplosion'
+import MatrixDissolve from './components/MatrixDissolve'
 import LogoReveal from './components/LogoReveal'
 import SoundToggle from './components/SoundToggle'
 import { MatrixAudioProvider, useAudio } from './context/MatrixAudioContext'
@@ -95,18 +96,9 @@ function AppContent() {
         </div>
       )}
 
-      {/* Smooth fade-to-black before navigating to dashboard */}
+      {/* Digital dissolve: tiles flip to white, revealing dashboard */}
       {phase === PHASE.FADEOUT && (
-        <div
-          style={{
-            position: 'fixed',
-            inset: 0,
-            zIndex: 50,
-            background: '#000',
-            animation: 'fade-to-black 800ms ease-in forwards',
-          }}
-          onAnimationEnd={handleFadeOutDone}
-        />
+        <MatrixDissolve onComplete={handleFadeOutDone} />
       )}
 
       <SoundToggle />
