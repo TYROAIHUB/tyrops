@@ -161,6 +161,8 @@ export function DataTable({ projects, onViewProject, onEditProject, onDeleteProj
     startDate: false,
     endDate: false,
     activeUsers: false,
+    totalInteractions: false,
+    totalRuntime: false,
     savedTime: false,
     replacedCost: false,
     costSpent: false,
@@ -332,6 +334,22 @@ export function DataTable({ projects, onViewProject, onEditProject, onDeleteProj
       cell: ({ row }) => {
         const v = row.getValue("activeUsers")
         return <span className="tabular-nums text-sm">{v ? v.toLocaleString('tr-TR') : "—"}</span>
+      },
+    },
+    {
+      accessorKey: "totalInteractions",
+      header: t('table.colInteractions'),
+      cell: ({ row }) => {
+        const v = row.getValue("totalInteractions")
+        return <span className="tabular-nums text-sm">{v ? v.toLocaleString('tr-TR') : "—"}</span>
+      },
+    },
+    {
+      accessorKey: "totalRuntime",
+      header: t('table.colRuntime'),
+      cell: ({ row }) => {
+        const v = row.getValue("totalRuntime")
+        return <span className="tabular-nums text-sm">{v ? `${v.toLocaleString('tr-TR')} sa` : "—"}</span>
       },
     },
     {
@@ -736,8 +754,10 @@ export function DataTable({ projects, onViewProject, onEditProject, onDeleteProj
                   valueGenerated:   t('table.colValue'),
                   startDate:        t('table.colStart'),
                   endDate:          t('table.colEnd'),
-                  activeUsers:      t('table.colUsers'),
-                  savedTime:        t('table.colSaved'),
+                  activeUsers:       t('table.colUsers'),
+                  totalInteractions: t('table.colInteractions'),
+                  totalRuntime:      t('table.colRuntime'),
+                  savedTime:         t('table.colSaved'),
                   replacedCost:     t('table.colReplaced'),
                   costSpent:        t('table.colCost'),
                   monthlyRecurring: t('table.colRecurring'),
