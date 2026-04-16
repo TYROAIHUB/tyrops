@@ -18,18 +18,23 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover"
 
-import usersData from "@/pages/users/data.json"
+import { useStore } from "@/store/useStore"
+import fallbackUsersData from "@/pages/users/data.json"
 
-const ALL_USERS = usersData.map((u) => ({
-  value: u.name,
-  label: u.name,
-  avatar: u.avatar,
-  role: u.role,
-}))
+function toSelectUser(u) {
+  return {
+    value: u.name,
+    label: u.name,
+    avatar: u.avatar ?? u.name?.slice(0, 2).toUpperCase(),
+    role: u.role,
+  }
+}
 
 export function TeamMultiSelect({ value = [], onChange }) {
   const t = useT()
   const [open, setOpen] = useState(false)
+  const storeUsers = useStore((s) => s.users)
+  const ALL_USERS = (storeUsers.length > 0 ? storeUsers : fallbackUsersData).map(toSelectUser)
 
   const toggle = (userName) => {
     if (value.includes(userName)) {

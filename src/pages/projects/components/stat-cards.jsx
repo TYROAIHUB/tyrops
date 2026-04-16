@@ -24,11 +24,11 @@ function pctToBars(pct) {
 
 function BarLevel({ filled, colorClass }) {
   return (
-    <div className="flex items-center gap-[3px] h-7 mt-3">
+    <div className="flex items-center gap-[3px] h-8 mt-3">
       {Array.from({ length: TOTAL_BARS }, (_, i) => (
         <div
           key={i}
-          className={`w-[4px] h-full rounded-full ${
+          className={`flex-1 h-full rounded-full ${
             i < filled ? colorClass : "bg-muted-foreground/15"
           }`}
         />

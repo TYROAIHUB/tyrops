@@ -39,7 +39,6 @@ import { Button } from "@/components/ui/button"
 import { Checkbox } from "@/components/ui/checkbox"
 import {
   DropdownMenu,
-  DropdownMenuCheckboxItem,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuSeparator,
@@ -157,7 +156,19 @@ export function DataTable({ projects, onViewProject, onEditProject, onDeleteProj
 
   const [sorting, setSorting] = useState([])
   const [columnFilters, setColumnFilters] = useState([])
-  const [columnVisibility, setColumnVisibility] = useState({})
+  const [columnVisibility, setColumnVisibility] = useState({
+    type: false,
+    startDate: false,
+    endDate: false,
+    activeUsers: false,
+    savedTime: false,
+    replacedCost: false,
+    costSpent: false,
+    monthlyRecurring: false,
+    repo: false,
+    liveUrl: false,
+    notes: false,
+  })
   const [rowSelection, setRowSelection] = useState({})
   const [globalFilter, setGlobalFilter] = useState("")
   const [selectedStatuses, setSelectedStatuses] = useState([])
@@ -283,6 +294,107 @@ export function DataTable({ projects, onViewProject, onEditProject, onDeleteProj
           {formatCurrency(row.getValue("valueGenerated"))}
         </span>
       ),
+    },
+    // ── Gizli sütunlar (varsayılan kapalı) ──────────────────────────
+    {
+      accessorKey: "type",
+      header: t('table.colType'),
+      cell: ({ row }) => {
+        const type = row.getValue("type")
+        const config = getTypeConfig(type)
+        return (
+          <span className="inline-flex items-center gap-1.5 text-sm">
+            <HugeiconsIcon icon={config.icon} style={{ width: 16, height: 16, color: config.color }} />
+            {config.label}
+          </span>
+        )
+      },
+    },
+    {
+      accessorKey: "startDate",
+      header: t('table.colStart'),
+      cell: ({ row }) => {
+        const v = row.getValue("startDate")
+        return <span className="tabular-nums text-sm">{v ? new Date(v + 'T00:00:00').toLocaleDateString('tr-TR', { day: 'numeric', month: 'short', year: 'numeric' }) : "—"}</span>
+      },
+    },
+    {
+      accessorKey: "endDate",
+      header: t('table.colEnd'),
+      cell: ({ row }) => {
+        const v = row.getValue("endDate")
+        return <span className="tabular-nums text-sm">{v ? new Date(v + 'T00:00:00').toLocaleDateString('tr-TR', { day: 'numeric', month: 'short', year: 'numeric' }) : "—"}</span>
+      },
+    },
+    {
+      accessorKey: "activeUsers",
+      header: t('table.colUsers'),
+      cell: ({ row }) => {
+        const v = row.getValue("activeUsers")
+        return <span className="tabular-nums text-sm">{v ? v.toLocaleString('tr-TR') : "—"}</span>
+      },
+    },
+    {
+      accessorKey: "savedTime",
+      header: t('table.colSaved'),
+      cell: ({ row }) => {
+        const v = row.getValue("savedTime")
+        return <span className="tabular-nums text-sm">{v ? `${v.toLocaleString('tr-TR')} sa` : "—"}</span>
+      },
+    },
+    {
+      accessorKey: "replacedCost",
+      header: t('table.colReplaced'),
+      cell: ({ row }) => (
+        <span className="tabular-nums text-sm">{formatCurrency(row.getValue("replacedCost"))}</span>
+      ),
+    },
+    {
+      accessorKey: "costSpent",
+      header: t('table.colCost'),
+      cell: ({ row }) => (
+        <span className="tabular-nums text-sm">{formatCurrency(row.getValue("costSpent"))}</span>
+      ),
+    },
+    {
+      accessorKey: "monthlyRecurring",
+      header: t('table.colRecurring'),
+      cell: ({ row }) => (
+        <span className="tabular-nums text-sm">{formatCurrency(row.getValue("monthlyRecurring"))}</span>
+      ),
+    },
+    {
+      accessorKey: "repo",
+      header: t('table.colRepo'),
+      cell: ({ row }) => {
+        const v = row.getValue("repo")
+        return v
+          ? <a href={v} target="_blank" rel="noopener noreferrer" className="text-sm text-blue-500 hover:underline truncate max-w-[160px] block">{v.replace(/^https?:\/\//, '')}</a>
+          : <span className="text-muted-foreground text-sm">—</span>
+      },
+      enableSorting: false,
+    },
+    {
+      accessorKey: "liveUrl",
+      header: t('table.colLive'),
+      cell: ({ row }) => {
+        const v = row.getValue("liveUrl")
+        return v
+          ? <a href={v} target="_blank" rel="noopener noreferrer" className="text-sm text-blue-500 hover:underline truncate max-w-[160px] block">{v.replace(/^https?:\/\//, '')}</a>
+          : <span className="text-muted-foreground text-sm">—</span>
+      },
+      enableSorting: false,
+    },
+    {
+      accessorKey: "notes",
+      header: t('table.colNotes'),
+      cell: ({ row }) => {
+        const v = row.getValue("notes")
+        return v
+          ? <span className="text-sm text-muted-foreground truncate max-w-[200px] block">{v.slice(0, 60)}{v.length > 60 ? '…' : ''}</span>
+          : <span className="text-muted-foreground text-sm">—</span>
+      },
+      enableSorting: false,
     },
     {
       id: "actions",
@@ -606,31 +718,78 @@ export function DataTable({ projects, onViewProject, onEditProject, onDeleteProj
 
         {/* Right: Columns, Toggle, New */}
         <div className="ml-auto flex items-center gap-2">
-          <DropdownMenu>
-            <DropdownMenuTrigger asChild>
+          <Popover>
+            <PopoverTrigger asChild>
               <Button variant="outline" size="sm" className="cursor-pointer h-8">
                 <Settings2 className="size-4" />
-                View
+                {t('table.toggleColumns')}
               </Button>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent align="end" className="w-40">
-              <div className="px-2 py-1.5 text-sm font-medium">{t('table.toggleColumns')}</div>
-              <DropdownMenuSeparator />
-              {table
-                .getAllColumns()
-                .filter((column) => column.getCanHide())
-                .map((column) => (
-                  <DropdownMenuCheckboxItem
-                    key={column.id}
-                    className="capitalize cursor-pointer"
-                    checked={column.getIsVisible()}
-                    onCheckedChange={(value) => column.toggleVisibility(!!value)}
-                  >
-                    {column.id === "valueGenerated" ? "Value" : column.id}
-                  </DropdownMenuCheckboxItem>
-                ))}
-            </DropdownMenuContent>
-          </DropdownMenu>
+            </PopoverTrigger>
+            <PopoverContent align="end" className="w-52 p-0">
+              {(() => {
+                const colLabels = {
+                  name:             t('table.colProject'),
+                  type:             t('table.colType'),
+                  tech:             t('table.colTech'),
+                  team:             t('table.colTeam'),
+                  status:           t('table.colStatus'),
+                  valueGenerated:   t('table.colValue'),
+                  startDate:        t('table.colStart'),
+                  endDate:          t('table.colEnd'),
+                  activeUsers:      t('table.colUsers'),
+                  savedTime:        t('table.colSaved'),
+                  replacedCost:     t('table.colReplaced'),
+                  costSpent:        t('table.colCost'),
+                  monthlyRecurring: t('table.colRecurring'),
+                  repo:             t('table.colRepo'),
+                  liveUrl:          t('table.colLive'),
+                  notes:            t('table.colNotes'),
+                }
+                const hideable = table.getAllColumns().filter((c) => c.getCanHide())
+                const hiddenCount = hideable.filter((c) => !c.getIsVisible()).length
+                return (
+                  <Command className="!h-auto">
+                    <CommandInput placeholder={t('table.toggleColumns') + "..."} />
+                    <CommandList
+                      style={{ maxHeight: '288px', overflowY: 'auto' }}
+                      onWheel={(e) => { e.stopPropagation(); e.currentTarget.scrollTop += e.deltaY }}
+                    >
+                      <CommandGroup>
+                        {hideable.map((column) => {
+                          const selected = column.getIsVisible()
+                          return (
+                            <CommandItem
+                              key={column.id}
+                              onSelect={() => column.toggleVisibility(!column.getIsVisible())}
+                              className="cursor-pointer"
+                            >
+                              <div className={`flex size-4 items-center justify-center rounded-sm border shrink-0 ${selected ? "bg-primary border-primary text-primary-foreground" : "border-muted-foreground/30"}`}>
+                                {selected && <CheckCircle2 className="size-3" />}
+                              </div>
+                              <span>{colLabels[column.id] ?? column.id}</span>
+                            </CommandItem>
+                          )
+                        })}
+                      </CommandGroup>
+                      {hiddenCount > 0 && (
+                        <>
+                          <Separator />
+                          <CommandGroup>
+                            <CommandItem
+                              onSelect={() => hideable.forEach((c) => c.toggleVisibility(true))}
+                              className="justify-center text-center cursor-pointer"
+                            >
+                              {t('table.showAll')}
+                            </CommandItem>
+                          </CommandGroup>
+                        </>
+                      )}
+                    </CommandList>
+                  </Command>
+                )
+              })()}
+            </PopoverContent>
+          </Popover>
           {onViewChange && (
             <ToggleGroup
               type="single"
